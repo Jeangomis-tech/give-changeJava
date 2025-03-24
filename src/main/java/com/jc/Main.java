@@ -4,26 +4,42 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-    Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter an amount: ");
+        while (true) {
+            System.out.print("Enter an amount in euros  : ");
 
-        try{
-            int amount = scanner.nextInt();
-            int[] result = CashDispenser.giveChange(amount);
-            System.out.println( amount + " €  = " + CashDispenser.formatedResult(result));
+            try {
+                int montant = scanner.nextInt();
 
-            // Show in details
-            System.out.println("\n Change returned: ");
-            System.out.println("10€ notes : " + result[0]);
-            System.out.println("5€ notes : " + result[1]);
-            System.out.println("2€ notes : " + result[2]);
-        }catch(Exception e){
-            System.out.println( "Error" + e.getMessage());
-        }finally{
-            scanner.close();
+                if (montant == 0) {
+                    System.out.println("Exit !");
+                    break;
+                }
+
+                CashDispenser.giveChange(montant);
+                System.out.println();
+
+            } catch (Exception e) {
+                System.out.println("Error : Please enter a number greater than 0");
+                scanner.next();
+            }
         }
 
-
+        scanner.close();
     }
+
+//        System.out.println(); CashDispenser.giveChange(50);
+//      CashDispenser.giveChange(25);
+//      CashDispenser.giveChange(32);
+//      CashDispenser.giveChange(21);
+//      CashDispenser.giveChange(23);
+//      CashDispenser.giveChange(28);
+//      CashDispenser.giveChange(31);
+//      CashDispenser.giveChange(33);
+//      CashDispenser.giveChange(38);
+
+
+
+
 }
